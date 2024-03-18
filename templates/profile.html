@@ -1,0 +1,95 @@
+<!-- templates/profile.html -->
+
+{% extends "base.html" %}
+
+{% block content %}
+<!--<h1 class="title">-->
+<h1 text-align="center">
+  Welcome, {{ name }}!
+</h1>
+
+<link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css"/>
+<script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+<!--<py-env>
+ -paths:
+  -/listdisk.py
+</py-env>
+-->
+
+<table border="1" cellpadding="5" style="border-collapse:collapse;border: 1px solid black">
+<caption>Диски</caption>
+	<tr>
+	<th>Имя диска</th>
+	<th>Размер</th>
+	<th>Файловая система</th>
+	<th>Точка монтирования</th>
+	<th>Форматировать диск (mkfs.ext4)</th>
+	<th>Примонтировать диск (mount)</th>
+	<th>Примонтировать диск (umount)</th>
+	<th>Очистить заголовок диска (wipefs)</th>
+	</tr>
+	<tr><td>
+
+	<td></tr>
+</table>
+<div>
+<!--
+<py-script>
+<!--import os
+res=os.system('fdisk -l')
+print (res)-->
+
+
+<!--from listdisk import makelistdisk
+res=makelistdisk()
+print(res) 
+
+import psutil
+print(psutil.disk_partitions())
+</py-script>
+-->
+
+<p>{{infodisk}} </p>
+</div> 
+
+{% endblock %}
+<link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css"/>
+<script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+<!--<py-env>
+ -paths:
+  -/listdisk.py
+</py-env>
+-->
+
+<table border="1" cellpadding="5" style="border-collapse:collapse;border: 1px solid black">
+<caption>Диски</caption>
+	<tr>
+	<th>Имя диска</th>
+	<th>Размер</th>
+	<th>Файловая система</th>
+	<th>Точка монтирования</th>
+	<th>Форматировать диск (mkfs.ext4)</th>
+	<th>Примонтировать диск (mount)</th>
+	<th>Примонтировать диск (umount)</th>
+	<th>Очистить заголовок диска (wipefs)</th>
+	</tr>
+	<tr><td>
+
+	<td></tr>
+</table>
+<div>
+<py-script>
+import os
+res=os.system('fdisk -l')
+print (res)
+
+
+<!--from listdisk import makelistdisk
+res=makelistdisk()
+print(res) 
+-->
+
+</py-script>
+</div> 
+
+{% endblock %}
