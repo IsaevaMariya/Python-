@@ -7,7 +7,28 @@
 <h1 text-align="center">
   Welcome, {{ name }}!
 </h1>
-
+<style>
+table{
+width:100%;
+border-collapse:collapse;
+border:2px solid black;
+overflow:scroll;
+}
+td{
+border:2px solid black;
+}
+th{
+border:2px solid black;
+}
+button{
+color:black;
+background:#fff;
+}
+input{
+color:#930;
+background-color:#ffe;
+}
+</style>
 <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css"/>
 <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
 <!--<py-env>
@@ -15,8 +36,9 @@
   -/listdisk.py
 </py-env>
 -->
-
-<table border="1" cellpadding="5" style="border-collapse:collapse;border: 1px solid black">
+<div>
+<form method="POST" action="/manipulating">
+<table  >
 <caption>Диски</caption>
 	<tr>
 	<th>Имя диска</th>
@@ -28,10 +50,39 @@
 	<th>Примонтировать диск (umount)</th>
 	<th>Очистить заголовок диска (wipefs)</th>
 	</tr>
-	<tr><td>
 
-	<td></tr>
+	{% for elem in infodisk %}
+	<tr>
+	 <td>
+	   {{elem[0]}}					
+	 </td>
+	 <td>
+	   {{elem[1]}}					
+	 </td>
+	 <td>
+	   {{elem[2]}}					
+	 </td>
+	 <td>
+	   {{elem[3]}}					
+	 </td>
+	 <td>
+	   <input class="input is-large" type="submit"	value="форматировать"/>			
+	 </td>
+	 <td>
+	 <input class="input is-large" type="submit"	value="примонтировать">				
+	 </td>
+	 <td>
+	   <input  class="input is-large" type="submit"	value="отмонтировать"/>				
+	 </td>
+	 <td>
+	   <input class="input is-large" type="submit"	value="очистить заголовок"/>	
+	 </td>
+	</tr>
+	{% endfor %}
+
 </table>
+</form>
+</div>
 <div>
 <!--
 <py-script>
@@ -49,47 +100,7 @@ print(psutil.disk_partitions())
 </py-script>
 -->
 
-<p>{{infodisk}} </p>
-</div> 
-
-{% endblock %}
-<link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css"/>
-<script defer src="https://pyscript.net/alpha/pyscript.js"></script>
-<!--<py-env>
- -paths:
-  -/listdisk.py
-</py-env>
--->
-
-<table border="1" cellpadding="5" style="border-collapse:collapse;border: 1px solid black">
-<caption>Диски</caption>
-	<tr>
-	<th>Имя диска</th>
-	<th>Размер</th>
-	<th>Файловая система</th>
-	<th>Точка монтирования</th>
-	<th>Форматировать диск (mkfs.ext4)</th>
-	<th>Примонтировать диск (mount)</th>
-	<th>Примонтировать диск (umount)</th>
-	<th>Очистить заголовок диска (wipefs)</th>
-	</tr>
-	<tr><td>
-
-	<td></tr>
-</table>
-<div>
-<py-script>
-import os
-res=os.system('fdisk -l')
-print (res)
-
-
-<!--from listdisk import makelistdisk
-res=makelistdisk()
-print(res) 
--->
-
-</py-script>
+<!--<p>Диски:{{infodisk}} </p>-->
 </div> 
 
 {% endblock %}
