@@ -44,7 +44,7 @@ def creating_file():
         if f"'device': {partition.device}" not in collect_info_dict['info']['disk_info']:
             collect_info_dict['info']['disk_info'][partition.device] = dict()
             collect_info_dict['info']['disk_info'][partition.device] = {'file_system': partition.fstype,
-                                                                        'size_total': correct_size(
+ 'mountpoint':partition.mountpoint,                                                                        'size_total': correct_size(
                                                                             partition_usage.total),
                                                                         'size_used': correct_size(
                                                                             partition_usage.used),
@@ -70,9 +70,22 @@ def print_info(dict_info):
                       f"\t- Свободно: {dict_info['info'][item][elem]['size_free']}\n"
                       f"\t- Заполненность: {dict_info['info'][item][elem]['percent']}%\n")
 
+
+def print_info2(dict_info):
+ mass=list()
+ m=list()
+ for item in dict_info['info']:
+  if item == "disk_info":
+   for elem in dict_info['info'][item]:
+    mass.append(elem)
+    mass.append(dict_info['info'][item][elem]['size_total'])
+    mass.append(dict_info['info'][item][elem]['file_system'])
+    mass.append(dict_info['info'][item][elem]['mountpoint'])
+   m.append(mass) 
+ return m
+
 def makelistdisk():
-
-        dict_info = creating_file()
-
-        return print_info(dict_info)
+ dict_info = creating_file()
+ a=print_info2(dict_info)
+ return a
 
