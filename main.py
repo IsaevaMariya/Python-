@@ -77,11 +77,12 @@ def print_info2(dict_info):
  for item in dict_info['info']:
   if item == "disk_info":
    for elem in dict_info['info'][item]:
+    mass=list() 
     mass.append(elem)
     mass.append(dict_info['info'][item][elem]['size_total'])
     mass.append(dict_info['info'][item][elem]['file_system'])
     mass.append(dict_info['info'][item][elem]['mountpoint'])
-   m.append(mass) 
+    m.append(mass) 
  return m
 
 def makelistdisk():
